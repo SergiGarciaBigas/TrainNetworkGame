@@ -4,6 +4,7 @@ import { RailwayNetwork } from "./RailwayNetwork";
 import { TestScenario } from "../../services/TestScenario";
 
 import { SimulationState } from "../simulation/SimulationState";
+import type { SimulationSnapshot } from "../../types/SimulationSnapshot";
 
 import { EconomyManager } from '../managers/EconomyManager';
 import { IncidentManager } from '../managers/IncidentManager';
@@ -21,8 +22,10 @@ export class SimulationEngine {
 
     private state: SimulationState;
 
+    private eventLog: string[];
+
     constructor() {
-        this.clock = new Clock(8, 0, 1);
+        this.clock = new Clock(23, 0, 1);
         //this.network = new RailwayNetwork();
         this.network = TestScenario.create();
 
@@ -32,10 +35,14 @@ export class SimulationEngine {
         this.economyManager = new EconomyManager();
 
         this.state = SimulationState.STOPPED;
+
+        this.eventLog = [];
+        this.eventLog.push("Simulación creada");
     }
 
     public start(): void {
         this.state = SimulationState.RUNNING;
+        this.eventLog.push("Simulación iniciada");
     }
 
     public pause(): void {
@@ -56,7 +63,7 @@ export class SimulationEngine {
         this.trainManager.update();
         this.incidentManager.update();
         this.economyManager.update();
-
+        /*
         console.clear();
 
         console.log("====================================");
@@ -77,6 +84,7 @@ export class SimulationEngine {
         console.log();
 
         console.log("------------------------------------");
+        */
     }
 
     public getClock(): Clock {
@@ -85,6 +93,17 @@ export class SimulationEngine {
 
     public getNetwork(): RailwayNetwork {
         return this.network;
+    }
+
+    public getSnapshot(): SimulationSnapshot {
+    return {
+        time: this.clock.getFormattedTime(),
+        state: this.state,
+        stations: this.network.getStations().length,
+        tracks: this.network.getTracks().length,
+        trains: this.network.getTrains().length,
+        events: [...this.eventLog]
+    };
     }
 
 }

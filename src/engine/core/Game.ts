@@ -1,3 +1,4 @@
+import type { SimulationSnapshot } from "../../types/SimulationSnapshot";
 import { SimulationEngine } from "./SimulationEngine";
 
 export class Game {
@@ -12,4 +13,7 @@ export class Game {
         setInterval(() => {this.simulation.update();}, 1000);
     }
 
+    public getSimulationSnapshot(): SimulationSnapshot {
+        return this.simulation.getSnapshot();
+    } 
 }
