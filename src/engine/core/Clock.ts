@@ -54,7 +54,7 @@ export class Clock {
     //---------- Métodos extra ----------
     
     //Hacemos que el reloj avance en función de la velocidad.
-    public tick(): void {
+    public advance_minute(): void {
         this.currentMinute += this.speed;
 
         if (this.currentMinute >= 60) {
@@ -71,8 +71,5 @@ export class Clock {
         this.currentHour = hour;
         this.currentMinute = minute;
     }
-
-    
-
 
 }
