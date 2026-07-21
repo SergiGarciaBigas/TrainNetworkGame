@@ -3,7 +3,7 @@ export const TrainState = {
     READY_TO_DEPART: "READY_TO_DEPART",
     MOVING: "MOVING",
     WAITING_SIGNAL: "WAITING_SIGNAL",
-    BROKEN_DOWN: "BROKEN_DOWN",
+    RESTING: "RESTING",
     OUT_OF_SERVICE: "OUT_OF_SERVICE",
 } as const;
 

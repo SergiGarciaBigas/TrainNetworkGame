@@ -1,4 +1,6 @@
 import type { SimulationSnapshot } from "../../types/SimulationSnapshot";
+import type { RailwayNetwork } from "./RailwayNetwork";
+import type { Passenger } from "../../entities/Passenger";
 import { SimulationEngine } from "./SimulationEngine";
 
 export class Game {
@@ -16,4 +18,12 @@ export class Game {
     public getSimulationSnapshot(): SimulationSnapshot {
         return this.simulation.getSnapshot();
     } 
+
+    public getNetwork(): RailwayNetwork {
+        return this.simulation.getNetwork();
+    }
+
+    public getPassengers(): Passenger[] {
+        return this.simulation.getPassengers();
+    }
 }
