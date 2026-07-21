@@ -39,7 +39,7 @@ export class Track {
     }
 
     public getTrains(): Train[] {
-        return this.trains;
+        return [...this.trains];
     }
 
 }

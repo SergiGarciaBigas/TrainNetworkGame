@@ -21,12 +21,7 @@ export class Train {
     private movingFromOriginToDestination: boolean;
     private passengers: Passenger[];
 
-    constructor(
-        id: number,
-        name: string,
-        maxSpeed: number,
-        capacity: number
-    ) {
+    constructor(id: number, name: string, maxSpeed: number, capacity: number, currentStation: Station | null = null, currentPlatform: Platform | null = null, currentTrack: Track | null = null) {
         this.id = id;
         this.name = name;
         this.maxSpeed = maxSpeed;
@@ -34,9 +29,9 @@ export class Train {
 
         this.state = TrainState.OUT_OF_SERVICE;
 
-        this.currentStation = null;
-        this.currentPlatform = null;
-        this.currentTrack = null;
+        this.currentStation = currentStation;
+        this.currentPlatform = currentPlatform;
+        this.currentTrack = currentTrack;
         this.remainingDistance = 0;
         this.movingFromOriginToDestination = true;
         this.passengers = [];
@@ -83,7 +78,7 @@ export class Train {
     }
 
     public getPassengers(): Passenger[] {
-        return this.passengers;
+        return [...this.passengers];
     }
 
     public getPassengerCount(): number {
