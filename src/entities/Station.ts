@@ -30,4 +30,9 @@ export class Station {
     public getPlatforms(): Platform[] {
         return this.platforms;
     }
+
+    public getNumOfPlatforms(): number {
+        return this.platforms.length;
+    }
+    
 }
