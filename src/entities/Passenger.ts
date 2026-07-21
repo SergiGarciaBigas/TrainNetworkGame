@@ -5,18 +5,21 @@ import { PassengerState } from "../types/PassengerState";
 import { randomInt } from "../utils/Random";
 
 export class Passenger {
+	//Atributos del pasajero: ID, estación de origen, estación de destino, 
+	//hora y minuto de aparición, estado actual, 
+	//estación actual (si está esperando en una estación), 
+	//tren actual (si está en un tren) y posición actual.
 	private readonly id: number;
 	private readonly originStation: Station;
 	private readonly destinationStation: Station;
 	private readonly spawnHour: number;
 	private readonly spawnMinute: number;
-
-
 	private state: PassengerState;
 	private currentStation: Station | null; //Será null si está en un tren.
 	private currentTrain: Train | null; //Será null si no está en un tren.
 	private position: Position;
 
+	//Constructor de la clase Passenger, que inicializa los atributos del pasajero.
 	constructor(id: number, originStation: Station, destinationStation: Station, spawnHour: number = randomInt(0, 23), spawnMinute: number = randomInt(1, 60)) {
 		this.id = id;
 		this.originStation = originStation;
@@ -30,6 +33,7 @@ export class Passenger {
 		this.position = { x: 0, y: 0 };
 	}
 
+	//---------- Getters ----------
 	public getId(): number {
 		return this.id;
 	}
@@ -65,6 +69,8 @@ export class Passenger {
 	public getPosition(): Position {
 		return this.position;
 	}
+
+	//---------- Métodos extras ----------
 
 	public isWaitingAtOrigin(): boolean {
 		return this.state === PassengerState.WAITING_AT_ORIGIN;

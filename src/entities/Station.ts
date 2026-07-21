@@ -14,7 +14,6 @@ export class Station {
     }
 
     //---------- Getters ----------
-
     public getId(): number {
         return this.id;
     }
@@ -33,6 +32,20 @@ export class Station {
 
     public getNumOfPlatforms(): number {
         return this.platforms.length;
+    }
+
+    public getAvailablePlatform(): Platform | null {
+        for (const platform of this.platforms) {
+            if (!platform.isOccupied()) {
+                platform.getId();
+            }
+        }
+
+        return null;
+    } 
+    
+    public hasAvailablePlatform(): boolean {
+        return this.getAvailablePlatform() !== null;
     }
     
 }
